@@ -1,0 +1,145 @@
+# To deploy for the first time, and for each update,
+# run both of the following commands in order:
+#
+# aws cloudformation package \
+# --template-file serverless.cfn.yml \
+# --output-template-file serverless-xfm.cfn.yml \
+# --s3-bucket startup-kit
+#
+# aws cloudformation deploy \
+# --template-file <path-to-file/serverless-xfm.cfn.yml> \
+# --stack-name StartupKitServerless \
+# --capabilities CAPABILITY_IAM
+
+
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: RESTful API for a TODO app, backed by a SimpleTable (DynamoDB) resource.
+
+Resources:
+  
+  CreateFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.create
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /todo/new
+            Method: post
+
+  GetAllFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.getAll
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBReadOnlyAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /todo/all
+            Method: get
+
+  # API functions related to active TODO items
+  
+  GetActiveFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.getActive
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBReadOnlyAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /todo/active
+            Method: get
+
+  UpdateActiveFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.updateActive
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+      Events:
+        PutResource:
+          Type: Api
+          Properties:
+            Path: /todo/active
+            Method: put
+
+  # API functions related to completed TODO items
+  
+  GetCompleteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.getComplete
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBReadOnlyAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /todo/complete
+            Method: get
+
+  MarkCompleteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.markComplete
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+      Events:
+        PutResource:
+          Type: Api
+          Properties:
+            Path: /todo/complete
+            Method: put
+
+  DeleteCompleteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.deleteComplete
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Table
+      Events:
+        DeleteResource:
+          Type: Api
+          Properties:
+            Path: /todo/complete
+            Method: delete
+
+  Table:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+         Name: todo_id
+         Type: String
+      ProvisionedThroughput:
+         ReadCapacityUnits: 5
+         WriteCapacityUnits: 5
