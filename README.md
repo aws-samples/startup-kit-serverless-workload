@@ -9,6 +9,12 @@ Model (SAM) is used to deploy the project.
 
 ### LAUNCHING THE APP ON AWS:
 
+Before you start, please make sure to either install the AWS CLI, or update
+the version you have installed previously (some commands used here may not
+exist in older versions of the AWS CLI).  The IAM user you associate with
+the AWS CLI should have admin permissions, including the ability to create
+IAM roles.  
+
 To begin your deployment, either download a zip file of the code from GitHub 
 or clone the GitHub repository with the command:  
 
@@ -39,7 +45,7 @@ with the full path to your output template file.
 aws cloudformation package \
 --template-file serverless.cfn.yml \
 --output-template-file serverless-xfm.cfn.yml \
---s3-bucket startup-kit
+--s3-bucket <your-bucket-name>
 
 aws cloudformation deploy \
 --template-file <path-to-file/serverless-xfm.cfn.yml> \
@@ -53,8 +59,10 @@ aws cloudformation deploy \
 First get the invoke URL of your API.  Do this by going to the API Gateway console, 
 selecting StartupKitServerless, then Stages in the left navigation panel, and finally 
 Stage in the list of stages.  The invoke URL should now appear at the top of the right 
-hand panel.  Begin testing by adding some TODO items using the create API.  This may 
-be accomplished using the following command: 
+hand panel.  
+
+Begin testing by adding some TODO items using the create API.  This may be
+accomplished using the following command: 
 
 ```
 
