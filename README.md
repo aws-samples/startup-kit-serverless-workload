@@ -9,11 +9,19 @@ Model (SAM) is used to deploy the project.
 
 ### LAUNCHING THE APP ON AWS:
 
-Before you start, please make sure to either install the AWS CLI, or update
-the version you have installed previously (some commands used here may not
-exist in older versions of the AWS CLI).  The IAM user you associate with
-the AWS CLI should have admin permissions, including the ability to create
-IAM roles.  
+#### Prerequisites
+
+- [Install the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html), or update
+ the version you have installed previously (some commands used here may not
+ exist in older versions of the AWS CLI).
+
+- [Create an IAM user with admin access](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html).
+ The IAM user you associate with the AWS CLI should have admin permissions, including the ability to create IAM roles.
+
+- [Configure the AWS CLI to use the admin user](http://docs.aws.amazon.com/cli/latest/reference/configure/)
+
+
+
 
 To begin your deployment, either download a zip file of the code from GitHub 
 or clone the GitHub repository with the command:  
@@ -23,6 +31,34 @@ or clone the GitHub repository with the command:
   git clone git@github.com:awslabs/startup-kit-serverless-workload.git
 
 ```
+
+
+#### Use the installation script to deploy
+
+You can use the installation script to deploy the app or continue to the manual deployment section to deploy it manually.
+
+The installation script (install.sh) should be found in the code you got from the GitHub repository. First you need to
+make sure the file has execution permission. You can gran the file execution permission by running the following command:
+
+```
+   
+   chmod +x install.sh
+
+```
+
+Then you can run the installation script:
+
+```
+   
+   ./install.sh
+
+```
+
+
+
+#### Manual deployment
+
+
 
 In the AWS Region where you plan to do your deployment, be sure you have an 
 existing Amazon S3 bucket in which SAM can put the deployment artifacts, or 
@@ -79,5 +115,3 @@ To fetch the active TODO items you created, execute the following command:
 ```
 
 Similar commands can be used to test all of the other API calls.
-
-
