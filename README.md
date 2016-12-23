@@ -28,17 +28,16 @@ or clone the GitHub repository with the command:
 
 ```
 
-  git clone git@github.com:awslabs/startup-kit-serverless-workload.git
+  git clone https://github.com/awslabs/startup-kit-serverless-workload.git
 
 ```
 
 
 #### Use the installation script to deploy
 
-You can use the installation script to deploy the app or continue to the manual deployment section to deploy it manually.
+You can use the installation script to deploy the app, or continue to the manual deployment section to deploy it manually.
 
-The installation script (install.sh) should be found in the code you got from the GitHub repository. First you need to
-make sure the file has execution permission. You can gran the file execution permission by running the following command:
+The installation script (install.sh) is in the code you downloaded or cloned from this GitHub repository. First make sure the file has execution permission. You can grant the file execution permission by running the following command:
 
 ```
    
@@ -54,11 +53,15 @@ Then you can run the installation script:
 
 ```
 
+That's it!  Your Startup Kit Serverless Workload is now fully deployed and ready to be tested.
+To test it, try the curl commands output by the installation script.  
 
 
 #### Manual deployment
 
-
+To understand the steps involved in an AWS SAM deployment, deploy the workload
+manually.  Once you have a S3 bucket in place to hold deployment artifacts, the 
+workflow for using AWS SAM primarily consists of using just two AWS CLI commands.  
 
 In the AWS Region where you plan to do your deployment, be sure you have an 
 existing Amazon S3 bucket in which SAM can put the deployment artifacts, or 
