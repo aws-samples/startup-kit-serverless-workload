@@ -12,7 +12,7 @@ if ! command -v aws > /dev/null; then
     exit 1
 fi
 
-ACCOUNT_ID=`aws iam get-user | grep 'arn:aws:iam' | grep -o '[0-9]*'`
+ACCOUNT_ID=`aws iam get-user | grep 'arn:aws:iam' | tr -dc '0-9'`
 BUCKET_NAME="${ACCOUNT_ID}-startup-kit-serverless-todo-app"
 REGION=`aws configure get region`
 
