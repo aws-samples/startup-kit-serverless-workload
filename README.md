@@ -1,4 +1,4 @@
-# startup-kit-serverless-workload
+# AWS Startup Kit Serverless Workload
 
 An example serverless application project:  a RESTful API for a TODO app.
 
