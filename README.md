@@ -1,9 +1,9 @@
 # AWS Startup Kit Serverless Workload
 
-An example serverless application project:  a RESTful API for a TODO app.
+An example serverless application project:  a RESTful API backed by DynamoDB.
 
 Components include multiple AWS Lambda functions, Amazon API Gateway, and an 
-Amazon DynamoDB table.  The project uses the Lambda Node.js 4.3 runtime, and 
+Amazon DynamoDB table.  The project uses the Lambda Node.js 6.10 runtime, and 
 generally follows the ECMAScript 6 standard.  The AWS Serverless Application 
 Model (SAM) is used to deploy the project. 
 
