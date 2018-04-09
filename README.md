@@ -55,9 +55,11 @@ Then you can run the installation script:
 That's it!  Your Startup Kit Serverless Workload is now fully deployed and ready to be tested.
 To test it, try the curl commands output by the installation script.  
 
-NOTE:  if you test with a front end, the API should work fine with a mobile client such as iOS or Android
-or when called from another server, but at present will not work with a web front end due to CORS issues. 
-To enable CORS on API Gateway when deploying with SAM, include a Swagger file as show in the example
+CORS NOTE:  if you test with a front end, the API should work fine with a mobile client such as iOS or Android.
+The API also should work when called from a server. However, it will not work out of the box with a 
+web front end due to CORS issues. To enable CORS on API Gateway when deploying with SAM, you have two options:
+- include a CORS property in the SAM template, as announced in https://github.com/awslabs/serverless-application-model/releases/tag/1.4.0, OR
+- include a Swagger file as show in the example
 https://github.com/awslabs/serverless-application-model/tree/master/examples/2016-10-31/api_swagger_cors.
 
 
@@ -123,9 +125,10 @@ To fetch the active TODO items you created, execute the following command:
 
 Similar commands can be used to test all of the other API calls.
 
-NOTE:  if you test with a front end, the API should work fine with a mobile client such as iOS or Android
-or when called from another server, but at present will not work with a web front end due to CORS issues. 
-To enable CORS on API Gateway when deploying with SAM, include a Swagger file as show in the example
+CORS NOTE:  if you test with a front end, the API should work fine with a mobile client such as iOS or Android.
+The API also should work when called from a server. However, it will not work out of the box with a 
+web front end due to CORS issues. To enable CORS on API Gateway when deploying with SAM, you have two options:
+- include a CORS property in the SAM template, as announced in https://github.com/awslabs/serverless-application-model/releases/tag/1.4.0, OR
+- include a Swagger file as show in the example
 https://github.com/awslabs/serverless-application-model/tree/master/examples/2016-10-31/api_swagger_cors.
-
 
