@@ -12,9 +12,9 @@ if ! command -v aws > /dev/null; then
     exit 1
 fi
 
-ACCOUNT_ID=`aws iam get-user | grep 'arn:aws:iam' | tr -dc '0-9'`
-BUCKET_NAME="${ACCOUNT_ID}-startup-kit-serverless-todo-app"
+ACCOUNT_ID=`aws sts get-caller-identity --query 'Account' --output=text`
 REGION=`aws configure get region`
+BUCKET_NAME="${ACCOUNT_ID}-${REGION}-startup-kit-serverless-todo-app"
 
 # Check if the account id is valid
 if ! [[ ${ACCOUNT_ID} =~ ${DIGITS_RE} ]] ; then
