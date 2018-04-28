@@ -3,7 +3,7 @@
 DIGITS_RE='^[0-9]+$'
 TEMPLATE_FILE_NAME='serverless.cfn.yml'
 PACKAGE_FILE_NAME='serverless-xfm.cfn.yml'
-STACK_NAME='StartupKitServerlessTodoApp'
+STACK_NAME='StartupKitServerlessWorkload'
 JSON_CONTENT='{"todo_id": "1001", "active": true, "description": "What TODO next?"}'
 
 # Check if the aws cli is installed
@@ -14,7 +14,7 @@ fi
 
 ACCOUNT_ID=`aws sts get-caller-identity --query 'Account' --output=text`
 REGION=`aws configure get region`
-BUCKET_NAME="${ACCOUNT_ID}-${REGION}-startup-kit-serverless-todo-app"
+BUCKET_NAME="${ACCOUNT_ID}-${REGION}-startup-kit-serverless-workload"
 
 # Check if the account id is valid
 if ! [[ ${ACCOUNT_ID} =~ ${DIGITS_RE} ]] ; then
