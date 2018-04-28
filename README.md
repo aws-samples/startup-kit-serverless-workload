@@ -4,7 +4,7 @@ An example serverless application project:  a RESTful API backed by DynamoDB. Th
 
 ![Architecture](images/architecture.jpg)
 
-More specifically, components include multiple AWS Lambda functions, Amazon API Gateway, and an Amazon DynamoDB table.  The project uses the Lambda Node.js 6.10 runtime, and generally follows the ECMAScript 6 standard.  The AWS Serverless Application Model (SAM) is used to deploy the project. 
+More specifically, components include multiple AWS Lambda functions, Amazon API Gateway, and an Amazon DynamoDB table.  The project uses the Lambda Node.js runtime, and generally follows the ECMAScript 6 standard.  The AWS Serverless Application Model (SAM) is used to deploy the project. 
 
 ### LAUNCHING THE APP ON AWS:
 
@@ -22,21 +22,20 @@ More specifically, components include multiple AWS Lambda functions, Amazon API 
 
 
 
-To begin your deployment, either download a zip file of the code from GitHub 
-or clone the GitHub repository with the command:  
+To begin your deployment, either download a zip file of the code from GitHub (via the green button above), or clone the GitHub repository with the command:  
 
 ```
 
-  git clone https://github.com/awslabs/startup-kit-serverless-workload.git
+  git clone https://github.com/aws-samples/startup-kit-serverless-workload.git
 
 ```
 
 
 #### Use the installation script to deploy
 
-You can use the installation script to deploy the app, or continue to the manual deployment section to deploy it manually.
+You can use the installation script to deploy the app, or continue to the manual deployment section below to deploy it manually.
 
-The installation script (install.sh) is in the code you downloaded or cloned from this GitHub repository. First make sure the file has execution permission. You can grant the file execution permission by running the following command:
+The installation script (install.sh) is in the code you downloaded or cloned from this GitHub repository. First make sure you can execute the script. Grant execution permissions for the script file by running the following command:
 
 ```
    
@@ -52,8 +51,7 @@ Then you can run the installation script:
 
 ```
 
-That's it!  Your Startup Kit Serverless Workload is now fully deployed and ready to be tested.
-To test it, try the curl commands output by the installation script.  
+That's it!  Your Startup Kit Serverless Workload is now fully deployed and ready to be tested.  To test it, try the curl commands output by the installation script.  
 
 CORS NOTE:  if you test with a front end, the API should work fine with a mobile client such as iOS or Android.
 The API also should work when called from a server. However, it will not work out of the box with a 
@@ -131,4 +129,10 @@ web front end due to CORS issues. To enable CORS on API Gateway when deploying w
 - include a CORS property in the SAM template, as announced in https://github.com/awslabs/serverless-application-model/releases/tag/1.4.0, OR
 - include a Swagger file as show in the example
 https://github.com/awslabs/serverless-application-model/tree/master/examples/2016-10-31/api_swagger_cors.
+
+
+### CLEAN UP:
+
+If you do not need to retain the workload created by this project, you can delete the resources associated with it.  To do so, go to the AWS console and select the **AWS CloudFormation** service from the list of AWS services.  Inside the CloudFormation console, examine the table of stacks.  Find the stack named ```StartupKitServerlessWorkload```, click the check box next to it, then select **Delete Stack** from the **Actions** drop down menu above the stack table.
+
 
