@@ -23,7 +23,7 @@ Resources:
     Properties:
       Handler: index.create
       FunctionName: StartupKitCreateFunction
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       Policies: AmazonDynamoDBFullAccess
       Environment:
         Variables:
@@ -40,7 +40,7 @@ Resources:
     Properties:
       Handler: index.getAll
       FunctionName: StartupKitGetAllFunction
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       Policies: AmazonDynamoDBReadOnlyAccess
       Environment:
         Variables:
@@ -59,7 +59,7 @@ Resources:
     Properties:
       Handler: index.getActive
       FunctionName: StartupKitGetActiveFunction
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       Policies: AmazonDynamoDBReadOnlyAccess
       Environment:
         Variables:
@@ -76,7 +76,7 @@ Resources:
     Properties:
       Handler: index.updateActive
       FunctionName: StartupKitUpdateActiveFunction
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       Policies: AmazonDynamoDBFullAccess
       Environment:
         Variables:
@@ -95,7 +95,7 @@ Resources:
     Properties:
       Handler: index.getComplete
       FunctionName: StartupKitGetCompleteFunction
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       Policies: AmazonDynamoDBReadOnlyAccess
       Environment:
         Variables:
@@ -112,7 +112,7 @@ Resources:
     Properties:
       Handler: index.markComplete
       FunctionName: StartupKitMarkCompleteFunction
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       Policies: AmazonDynamoDBFullAccess
       Environment:
         Variables:
@@ -129,7 +129,7 @@ Resources:
     Properties:
       Handler: index.deleteComplete
       FunctionName: StartupKitDeleteCompleteFunction
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       Policies: AmazonDynamoDBFullAccess
       Environment:
         Variables:
