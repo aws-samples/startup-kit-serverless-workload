@@ -16,6 +16,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Startup Kit RESTful API backed by a SimpleTable (DynamoDB).
 
+
 Globals:
 
   Function:
@@ -23,6 +24,7 @@ Globals:
     Environment:
       Variables:
         TABLE_NAME: !Ref Table
+
 
 Resources:
   
@@ -130,3 +132,10 @@ Resources:
       ProvisionedThroughput:
          ReadCapacityUnits: 5
          WriteCapacityUnits: 5
+
+
+Outputs:
+
+  ApiUrl:
+    Description: URL of the Prod stage of the API endpoint
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
