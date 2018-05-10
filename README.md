@@ -6,9 +6,9 @@ An example serverless application project:  a RESTful API backed by DynamoDB. Th
 
 More specifically, components include multiple AWS Lambda functions, Amazon API Gateway, and an Amazon DynamoDB table.  The project uses the Lambda Node.js runtime, and generally follows the ECMAScript 6 standard.  The AWS Serverless Application Model (SAM) is used to deploy the project. 
 
-### LAUNCHING THE APP ON AWS:
+## LAUNCHING THE APP ON AWS
 
-#### Prerequisites
+### Prerequisites
 
 - [Install the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html), or update
  the version you have installed previously (some commands used here may not
@@ -20,8 +20,6 @@ More specifically, components include multiple AWS Lambda functions, Amazon API 
 - [Configure the AWS CLI to use the admin user](http://docs.aws.amazon.com/cli/latest/reference/configure/)
 
 
-
-
 To begin your deployment, either download a zip file of the code from GitHub (via the green button above), or clone the GitHub repository with the command:  
 
 ```
@@ -31,11 +29,11 @@ To begin your deployment, either download a zip file of the code from GitHub (vi
 ```
 
 
-#### Use the installation script to deploy
+### Deployment Via Installation Script
 
-You can use the installation script to deploy the app, or continue to the manual deployment section below to deploy it manually.
+You can use the installation script to deploy the app, or continue to the manual deployment section below to gain insight regarding what's happening under the hood.
 
-The installation script (install.sh) is in the code you downloaded or cloned from this GitHub repository. First make sure you can execute the script. Grant execution permissions for the script file by running the following command:
+The installation script (install.sh) is in the code you downloaded or cloned from this GitHub repository. First make sure you can execute the script. Using the command line, grant execution permissions for the script file by running the following command:
 
 ```
    
@@ -51,17 +49,10 @@ Then you can run the installation script:
 
 ```
 
-That's it!  Your Startup Kit Serverless Workload is now fully deployed and ready to be tested.  To test it, try the curl commands output by the installation script.  
-
-CORS NOTE:  if you test with a front end, the API should work fine with a mobile client such as iOS or Android.
-The API also should work when called from a server. However, it will not work out of the box with a 
-web front end due to CORS issues. To enable CORS on API Gateway when deploying with SAM, you have two options:
-- include a CORS property in the SAM template, as announced in https://github.com/awslabs/serverless-application-model/releases/tag/1.4.0, OR
-- include a Swagger file as show in the example
-https://github.com/awslabs/serverless-application-model/tree/master/examples/2016-10-31/api_swagger_cors.
+That's it!  Your Startup Kit Serverless Workload is now fully deployed and ready to be tested.  To test it, try the curl commands output by the installation script. See the **TESTING THE APP** section below for further testing options and CORS details.  
 
 
-#### Manual deployment
+### Manual Deployment
 
 To understand the steps involved in an AWS SAM deployment, deploy the workload
 manually.  Once you have a S3 bucket in place to hold deployment artifacts, the 
@@ -97,11 +88,13 @@ aws cloudformation deploy \
 
 ```
 
-### TESTING THE APP:
+### TESTING AND CORS
+
+#### Testing From the Command Line
 
 First get the invoke URL of your API.  Do this by going to the API Gateway console, 
-selecting StartupKitServerless, then Stages in the left navigation panel, and finally 
-Stage in the list of stages.  The invoke URL should now appear at the top of the right 
+selecting the StartupKitServerless API, then **Stages** in the left navigation panel, and finally 
+**Stage** in the list of stages.  The invoke URL should now appear at the top of the right 
 hand panel.  
 
 Begin testing by adding some TODO items using the create API.  This may be
@@ -123,15 +116,15 @@ To fetch the active TODO items you created, execute the following command:
 
 Similar commands can be used to test all of the other API calls.
 
-CORS NOTE:  if you test with a front end, the API should work fine with a mobile client such as iOS or Android.
-The API also should work when called from a server. However, it will not work out of the box with a 
-web front end due to CORS issues. To enable CORS on API Gateway when deploying with SAM, you have two options:
-- include a CORS property in the SAM template, as announced in https://github.com/awslabs/serverless-application-model/releases/tag/1.4.0, OR
-- include a Swagger file as show in the example
-https://github.com/awslabs/serverless-application-model/tree/master/examples/2016-10-31/api_swagger_cors.
+
+#### Testing From A Front End With CORS Enbabled
+
+Without CORS enabled, the API should work fine with a mobile client such as iOS or Android. The API also should work when called from a server. However, unless CORS is enabled, the API will not work with a web front end due to CORS. 
+
+By default, CORS is enabled for this project. This involves two files:  serverless.cfn.yml, and the source code file index.js.  In serverless.cfn.yml, the Globals section has a **Cors** property under **Api** to enable CORS.  In index.js, the **createResponse** function returns an Access-Control-Allow-Origin header. To disable CORS, remove this code. If you retain CORS enablement for a real world project, it is a best practice to replace the domain name-related wildcards in both files with a specific domain name.  
 
 
-### CLEAN UP:
+## CLEAN UP
 
 If you do not need to retain the workload created by this project, you can delete the resources associated with it.  To do so, go to the AWS console and select the **AWS CloudFormation** service from the list of AWS services.  Inside the CloudFormation console, examine the table of stacks.  Find the stack named ```StartupKitServerlessWorkload```, click the check box next to it, then select **Delete Stack** from the **Actions** drop down menu above the stack table.
 
