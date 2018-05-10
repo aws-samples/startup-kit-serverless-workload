@@ -10,9 +10,15 @@ const tableName = process.env.TABLE_NAME;
 // see the Developer Guide for further details
 const createResponse = (statusCode, body) => {
     
+    // to restrict the origin for CORS purposes, replace the wildcard
+    // origin with a specific domain name
     return {
         statusCode: statusCode,
-        body: body
+        body: body,
+        headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+        }
     }
 };
 
