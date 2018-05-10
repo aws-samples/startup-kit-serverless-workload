@@ -16,6 +16,14 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Startup Kit RESTful API backed by a SimpleTable (DynamoDB).
 
+Globals:
+
+  Function:
+    Runtime: nodejs8.10
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref Table
+
 Resources:
   
   CreateFunction:
@@ -23,11 +31,7 @@ Resources:
     Properties:
       Handler: index.create
       FunctionName: StartupKitCreateFunction
-      Runtime: nodejs8.10
       Policies: AmazonDynamoDBFullAccess
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
       Events:
         PostResource:
           Type: Api
@@ -40,11 +44,7 @@ Resources:
     Properties:
       Handler: index.getAll
       FunctionName: StartupKitGetAllFunction
-      Runtime: nodejs8.10
       Policies: AmazonDynamoDBReadOnlyAccess
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
       Events:
         GetResource:
           Type: Api
@@ -59,11 +59,7 @@ Resources:
     Properties:
       Handler: index.getActive
       FunctionName: StartupKitGetActiveFunction
-      Runtime: nodejs8.10
       Policies: AmazonDynamoDBReadOnlyAccess
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
       Events:
         GetResource:
           Type: Api
@@ -76,11 +72,7 @@ Resources:
     Properties:
       Handler: index.updateActive
       FunctionName: StartupKitUpdateActiveFunction
-      Runtime: nodejs8.10
       Policies: AmazonDynamoDBFullAccess
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
       Events:
         PutResource:
           Type: Api
@@ -95,11 +87,7 @@ Resources:
     Properties:
       Handler: index.getComplete
       FunctionName: StartupKitGetCompleteFunction
-      Runtime: nodejs8.10
       Policies: AmazonDynamoDBReadOnlyAccess
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
       Events:
         GetResource:
           Type: Api
@@ -112,11 +100,7 @@ Resources:
     Properties:
       Handler: index.markComplete
       FunctionName: StartupKitMarkCompleteFunction
-      Runtime: nodejs8.10
       Policies: AmazonDynamoDBFullAccess
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
       Events:
         PutResource:
           Type: Api
@@ -129,11 +113,7 @@ Resources:
     Properties:
       Handler: index.deleteComplete
       FunctionName: StartupKitDeleteCompleteFunction
-      Runtime: nodejs8.10
       Policies: AmazonDynamoDBFullAccess
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref Table
       Events:
         DeleteResource:
           Type: Api
