@@ -88,14 +88,17 @@ aws cloudformation deploy \
 
 ```
 
+
+### AWS Cloud9
+
+When you are working with a non-sample serverless application, you might consider using AWS Cloud9 to help manage your serverless application project. Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It has the AWS CLI pre-installed so you don’t need to install files or configure your laptop to use the AWS CLI. You can use Cloud9 to work with AWS Lambda functions and their related Amazon API Gateway APIs in a Cloud9 development environment. It enables easy local testing of Lambda functions as well as one-click remote deployment of Lambda functions. For more details, see https://docs.aws.amazon.com/cloud9/latest/user-guide/lambda-functions.html.
+
+
 ## TESTING AND CORS
 
 ### Testing From the Command Line
 
-First get the invoke URL of your API.  Do this by going to the API Gateway console, 
-selecting the StartupKitServerless API, then **Stages** in the left navigation panel, and finally 
-**Stage** in the list of stages.  The invoke URL should now appear at the top of the right 
-hand panel.  
+First get the invoke URL of your API. If you did not use the installation script, do this by going to the API Gateway console, selecting the StartupKitServerless API, then **Stages** in the left navigation panel, and finally **Stage** in the list of stages.  The invoke URL should now appear at the top of the right hand panel.  
 
 Begin testing by adding some TODO items using the create API.  This may be
 accomplished using the following command: 
