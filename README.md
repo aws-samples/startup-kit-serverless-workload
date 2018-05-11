@@ -49,7 +49,7 @@ Then you can run the installation script:
 
 ```
 
-That's it!  Your Startup Kit Serverless Workload is now fully deployed and ready to be tested.  To test it, try the curl commands output by the installation script. See the **TESTING THE APP** section below for further testing options and CORS details.  
+That's it!  Your Startup Kit Serverless Workload is now fully deployed and ready to be tested.  To test it, try the curl commands output by the installation script. See the **TESTING AND CORS** section below for further testing options and CORS details.  
 
 
 ### Manual Deployment
@@ -88,9 +88,9 @@ aws cloudformation deploy \
 
 ```
 
-### TESTING AND CORS
+## TESTING AND CORS
 
-#### Testing From the Command Line
+### Testing From the Command Line
 
 First get the invoke URL of your API.  Do this by going to the API Gateway console, 
 selecting the StartupKitServerless API, then **Stages** in the left navigation panel, and finally 
@@ -117,7 +117,7 @@ To fetch the active TODO items you created, execute the following command:
 Similar commands can be used to test all of the other API calls.
 
 
-#### Testing From A Front End With CORS Enbabled
+### Testing From A Front End With CORS Enbabled
 
 Without CORS enabled, the API should work fine with a mobile client such as iOS or Android. The API also should work when called from a server. However, unless CORS is enabled, the API will not work with a web front end due to CORS. 
 
