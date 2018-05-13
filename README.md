@@ -4,7 +4,7 @@ An example serverless application project:  a RESTful API backed by DynamoDB. Th
 
 ![Architecture](images/architecture.jpg)
 
-More specifically, components include multiple AWS Lambda functions, Amazon API Gateway, and an Amazon DynamoDB table.  The project uses the Lambda Node.js runtime, and generally follows the ECMAScript 6 standard.  The AWS Serverless Application Model (SAM) is used to deploy the project. 
+More specifically, components include multiple AWS Lambda functions, Amazon API Gateway, and an Amazon DynamoDB table. The project uses the Lambda Node.js runtime. It generally follows the ECMAScript 6 standard, and the Lambda function handlers are implemented using the async/await pattern introduced along with the Lambda Node.js 8.10 runtime. The AWS Serverless Application Model (SAM) is used to deploy the project. 
 
 ## LAUNCHING THE APP ON AWS
 
