@@ -20,7 +20,7 @@ Description: Startup Kit RESTful API backed by a SimpleTable (DynamoDB).
 Globals:
 
   Function:
-    Runtime: nodejs8.10
+    Runtime: nodejs10.x
     Environment:
       Variables:
         TABLE_NAME: !Ref Table
